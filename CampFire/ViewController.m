@@ -9,19 +9,37 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+{
+    UIImageView* CampFire;
+    
+}
 @end
 
 @implementation ViewController
 
+-(void)loadView
+{
+    [super loadView];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
+    [self BurnFire];
+  }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)BurnFire
+{
+    CampFire = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    NSMutableArray* images = [[NSMutableArray alloc] initWithCapacity:17];
+    for (int i=1; i<18; i++) {
+        NSString* fireName;
+        fireName = [NSString stringWithFormat:@"campFire%d.gif",i];
+        [images addObject:[UIImage imageNamed:fireName]];
+    }
+    CampFire.animationImages = images;
+                    CampFire.animationDuration=1;
+                    CampFire.animationRepeatCount=0;
+                    [self.view addSubview:CampFire];
+                    [CampFire startAnimating];
 }
 
 @end
